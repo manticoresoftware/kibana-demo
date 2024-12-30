@@ -1,0 +1,33 @@
+filebeat.inputs:
+- type: log
+  id: nginx-main
+  paths:
+    - /logs/nginx_main.log
+- type: log
+  id: nginx-delta
+  paths:
+    - /logs/nginx_delta.log
+
+processors:
+- dissect:
+    tokenizer: '%{ip} - %{username} [%{time_local}] "%{request_method} %{request_path}" %{status|integer} %{bytes_sent|integer} "%{referer}" "%{http_user_agent|string}/%{http_user_agent_version|string}"'
+    target_prefix: ""
+
+output.elasticsearch:
+  hosts: ["http://manticore-for-kibana:9308"]
+  index:  "test"
+  allow_older_versions: true
+
+setup.ilm:
+  enabled: false
+
+setup.template:
+  name: "test"
+  pattern: "test"
+
+seccomp:
+  default_action: allow
+  syscalls:
+  - action: allow
+    names:
+    - rseq

@@ -1,0 +1,122 @@
+version: '3.8'
+
+services:
+  
+  log-generator:
+    container_name: log-generator
+    build:
+      dockerfile:  Dockerfile
+      context: ./log-generator
+    volumes:
+      - ./logs:/logs
+    environment:
+      - REGENERATE_LOG=$REGENERATE_LOG
+      - LOG_ENTRY_COUNT=$LOG_ENTRY_COUNT
+      - LOG_UPDATE_RATE=$LOG_UPDATE_RATE
+    networks:
+      - backend
+    depends_on:
+      elasticsearch:
+         condition: service_healthy
+      manticore:
+         condition: service_healthy
+      
+  elasticsearch:
+    build:
+      context: ./es
+    container_name: elastic-for-kibana
+    environment:
+      - discovery.type=single-node
+      - xpack.ml.enabled=false
+      - REGENERATE_LOG=$REGENERATE_LOG
+    volumes:
+      - ./$ES_DATA_DIR:/usr/share/elasticsearch/data
+    networks:
+      - backend
+    healthcheck:
+      test: curl -s http://localhost:9200 >/dev/null || exit 1
+      interval: 15s
+      timeout: 5s
+      retries: 10
+
+  manticore:
+    build:
+      context: ./manticore
+    container_name: manticore-for-kibana
+    environment:
+      - EXTRA=1
+      - searchd_threads=64
+      - REGENERATE_LOG=$REGENERATE_LOG
+    volumes:
+      - ./$MANTICORE_DATA_DIR:/var/lib/manticore
+    networks:
+      - backend
+    healthcheck:
+      test: ps aux | grep "[s]earchd" >/dev/null || exit 1
+      interval: 15s
+      timeout: 5s
+      retries: 10
+
+  filebeat-elasticsearch:
+    build:
+      dockerfile: Dockerfile_es
+      context: ./filebeat
+    user: root
+    container_name: filebeat-for-elastic
+    volumes:
+      - ./logs:/logs
+    networks:
+      - backend
+    depends_on:
+      elasticsearch:
+         condition: service_healthy
+
+  filebeat-manticore:
+    build:
+      dockerfile: Dockerfile_manticore
+      context: ./filebeat
+    user: root
+    container_name: filebeat-for-manticore
+    volumes:
+      - ./logs:/logs
+    networks:
+      - backend
+    depends_on:
+      manticore:
+         condition: service_healthy
+ 
+  kibana-for-elasticsearch:
+    image: docker.elastic.co/kibana/kibana:7.6.0
+    container_name: kibana-for-elasticsearch
+    environment:
+      - SERVER_NAME=kibana
+      - ELASTICSEARCH_HOSTS=http://elastic-for-kibana:9200
+      - ELASTICSEARCH_USERNAME=elastic
+      - ELASTICSEARCH_PASSWORD=pass
+    networks:
+      - backend
+    ports:
+      - "$ES_KIBANA_PORT:5601"
+    depends_on:
+      elasticsearch:
+         condition: service_healthy
+
+  kibana-for-manticore:
+    image: docker.elastic.co/kibana/kibana:7.6.0
+    container_name: kibana-for-manticore
+    environment:
+      - SERVER_NAME=kibana
+      - ELASTICSEARCH_HOSTS=http://manticore-for-kibana:9308
+      - ELASTICSEARCH_USERNAME=elastic
+      - ELASTICSEARCH_PASSWORD=pass
+    networks:
+      - backend
+    ports:
+      - "$MANTICORE_KIBANA_PORT:5601"
+    depends_on:
+      manticore:
+         condition: service_healthy
+
+networks:
+  backend:
+    driver: bridge
