@@ -4,7 +4,7 @@ while read -r line || [ -n "$line" ]; do eval $line; done < .env
 
 if [[ "$REGENERATE_LOG" == "0" ]];
 then
-	LOAD_DATA_DIR="https://github.com/manticoresoftware/kibana-demo/releases/download/untagged-0f3663330d2fb6420385"
+	LOAD_DATA_DIR="https://github.com/manticoresoftware/kibana-demo/releases/download/241227"
 	ES_DATA_DIR="es_data_prepared"
 	MANTICORE_DATA_DIR="manticore_data_prepared"
 
