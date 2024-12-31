@@ -14,7 +14,7 @@ then
 		ES_LOAD_DATA_DIR="${LOAD_DATA_DIR}/${ES_DATA_DIR}"
 		wget "$ES_LOAD_DATA_DIR.z01" "$ES_LOAD_DATA_DIR.z02" "$ES_LOAD_DATA_DIR.z03" "$ES_LOAD_DATA_DIR.z04" "$ES_LOAD_DATA_DIR.zip"
 		zip -FF "$ES_DATA_DIR.zip" --out "${ES_DATA_DIR}_tmp.zip"
-		unzip "${ES_DATA_DIR}_tmp.zip" && rm -rf "${ES_DATA_DIR}_tmp.zip" && chmod 777 -R $ES_DATA_DIR
+		unzip "${ES_DATA_DIR}_tmp.zip" && rm -rf "${ES_DATA_DIR}_tmp.zip"
 	fi
 	if [ ! -d "$MANTICORE_DATA_DIR" ];
 	then
