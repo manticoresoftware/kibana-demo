@@ -1,6 +1,6 @@
 # Manticore Search Kibana Demo
 
-<img src="manticore.png" alt="manticore" width="425" height="250" /> <img height="250" hspace="20"/> <img src="elastic.png" alt="elastic" width="425" height="250" />
+<img src="manticore1.png" alt="manticore" width="425" height="250" /> <img height="250" hspace="20"/> <img src="elastic1.png" alt="elastic" width="425" height="250" />
 
 ## Table of Contents
 
