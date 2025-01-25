@@ -1,5 +1,8 @@
 #! /bin/bash
 
+# Remove previously generated data files
+rm -rf  /logs/*
+
 if [[ "$REGENERATE_LOG" == "1" ]];
 then
 	curl http://manticore-for-kibana:9308/cli -d 'CREATE TABLE test(message text, request_path string, http_user_agent string, referer string, time_local string, http_user_agent_version string, username string, ip string, request_method string, @timestamp timestamp, log json, input json, agent json, ecs json, bytes_sent int, status int, host json)'
