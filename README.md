@@ -45,6 +45,11 @@ cd kibana-demo
 
 ### Configure the Environment
 
+Set necessary permissions for the Elasticsesrch data folder:
+```bash
+chmod 777 es_data
+```
+
 Edit the .env file to choose between using pre-built Elasticsearch and Manticore indexes or generating a new log file and building new indexes based on it.
 
 #### Pre-Built Indexes
