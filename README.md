@@ -33,6 +33,7 @@ Before getting started, ensure you have the following installed:
 
 - [Git](https://git-scm.com/)
 - [Docker Compose](https://docs.docker.com/compose/)
+- Zip and Unzip tools
 
 ## Getting Started
 
