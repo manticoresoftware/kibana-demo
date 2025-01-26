@@ -1,7 +1,5 @@
 # Manticore Search Kibana Demo
 
-<img src="manticore1.png" alt="manticore" width="350" height="200" /> <img height="200" hspace="20"/> <img src="elastic1.png" alt="elastic" width="350" height="200" />
-
 ## Table of Contents
 
 - [Features](#features)
@@ -46,33 +44,21 @@ cd kibana-demo
 
 ### Configure the Environment
 
-Set necessary permissions for the Elasticsesrch data folder:
+Grant permissions for the Elasticsearch data folder:
 ```bash
 chmod 777 es_data
-```
-
-Edit the .env file to choose between using pre-built Elasticsearch and Manticore indexes or generating a new log file and building new indexes based on it.
-
-#### Pre-Built Indexes
-
-If you choose this option, prepared Elasticsearch and Manticore indexes will be downloaded from GitHub (data volume ~13GB). Note that this process may take some time. 
-
-Set the following in .env:
-
-```bash
-REGENERATE_LOG=0
 ```
 
 
 #### Generate a New Log File
 
-If you choose to generate a new log file, data loading into Elasticsearch and Manticore may also take significant time, especially if a large number of log entries are configured.
+Edit the `.env` file to set how many log entries to generate. By default, this is 50 million entries.
+Note that loading a large number of entries into Elasticsearch and Manticore can take time.
 
-Set the following in .env:
+Set the following in `.env`:
 
 ```bash
-REGENERATE_LOG=1
-LOG_ENTRY_COUNT=100000
+LOG_ENTRY_COUNT=50000000
 ```
 
 #### Update Log Data
@@ -100,15 +86,17 @@ Run the startup script:
 ./start.sh
 ```
 
-Wait until the log generation or index loading process is complete.
+Wait a few minutes for log generation and index loading to begin.
 
 Verify the services are running:
-- Kibana with Elasticsearch : http://localhost:5612
-- Kibana with Manticore : http://localhost:5613
+- Elasticsearch Kibana: http://localhost:5612
+- Manticore Kibana : http://localhost:5613
+
+Choose `Explore on my own` on the Kibana start screen
 
 ### Import Kibana objects
 
-If you generated a new index, import the pre-built visualizations into Kibana.
+Import the pre-built visualizations into Kibana to use for the generated data.
 
 For the Elasticsearch Kibana instance:
 
@@ -130,6 +118,11 @@ For the Manticore Kibana instance:
 
 Once the setup is complete, explore the imported dashboards and visualizations based on the indexed log data. Navigate to *Dashboard* or *Visualize* in the Kibana menu.
 
+After all log entries are loaded, you'll notice differences in dashboard load times between Manticore and Elasticsearch.
+Here are our test results with about 40 million documents:  
+
+<img src="manticore1.png" alt="manticore" width="350" height="200" /> <img height="200" hspace="20"/> <img src="elastic1.png" alt="elastic" width="350" height="200" />
+
 ### Stopping the Environment
 
 To stop and remove all containers, run:
@@ -137,6 +130,18 @@ To stop and remove all containers, run:
 ```bash
 docker-compose down
 ```
+
+## Limitations
+
+- Currently, Kibana version 7.6.0 is tested and recommended. Other 7.x versions may work but could cause issues. Versions 8.x are not supported.
+- The following Elasticsearch-specific field types are not supported:
+  - [Spatial data types](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html#spatial_datatypes)
+  - [Structured data types](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html#structured-data-types)
+  - [Document ranking types](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html#document-ranking-types)
+  - [Text search types](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html#text-search-types) (except for plain 'text')
+  - [Relational data types](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html#object-types)
+- Metric aggregation functions are limited to [those supported by Manticore](../Searching/Grouping.md#Aggregation-functions).
+ 
 
 ## Contributing
 
