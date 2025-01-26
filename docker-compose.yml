@@ -10,7 +10,6 @@ services:
     volumes:
       - ./logs:/logs
     environment:
-      - REGENERATE_LOG=$REGENERATE_LOG
       - LOG_ENTRY_COUNT=$LOG_ENTRY_COUNT
       - LOG_UPDATE_RATE=$LOG_UPDATE_RATE
     networks:
@@ -28,7 +27,6 @@ services:
     environment:
       - discovery.type=single-node
       - xpack.ml.enabled=false
-      - REGENERATE_LOG=$REGENERATE_LOG
     volumes:
       - ./$ES_DATA_DIR:/usr/share/elasticsearch/data
     networks:
@@ -46,7 +44,6 @@ services:
     environment:
       - EXTRA=1
       - searchd_threads=64
-      - REGENERATE_LOG=$REGENERATE_LOG
     volumes:
       - ./$MANTICORE_DATA_DIR:/var/lib/manticore
     networks:
