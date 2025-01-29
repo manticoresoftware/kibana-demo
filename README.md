@@ -33,6 +33,11 @@ Before getting started, ensure you have the following installed:
 - [Docker Compose](https://docs.docker.com/compose/)
 - Zip and Unzip tools
 
+Command to install these packages in Ubuntu / Debian:
+```
+apt -y update && apt -y install git docker-compose zip unzip
+```
+
 ## Getting Started
 
 ### Clone the Repository
