@@ -66,9 +66,7 @@ Set the following in `.env`:
 LOG_ENTRY_COUNT=50000000
 ```
 
-#### Update Log Data
-
-Additionally, you can update the indexes with new log entries to simulate real-time log behavior. Use the UPDATE_RATE option to define how many log entries are added per second. To disable this feature, set `UPDATE_RATE` to 0:
+You can also make it add new log entries after the main volume is uploaded to mimic real-time logging. Use the `UPDATE_RATE` option to set how many log entries are added per second. To turn off this feature, set `UPDATE_RATE` to 0.  
 
 ```bash
 UPDATE_RATE=1
