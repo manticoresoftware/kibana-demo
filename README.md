@@ -83,9 +83,8 @@ Import the pre-built visualizations into Kibana to use for the generated data.
 For the **Elasticsearch Kibana** instance:
 
 - Go to *Management > Saved objects* in the Kibana menu
-- Click *Import* and select the `.kibana_objects.ndjson` file from the project folder.
+- Click *Import* and select the [kibana_objects.ndjson](https://raw.githubusercontent.com/manticoresoftware/kibana-demo/refs/heads/main/kibana_objects.ndjson) file from the root of this repository.
 - Refresh the Kibana window to apply the changes.
-
 
 For the **Manticore Kibana** instance:
 
