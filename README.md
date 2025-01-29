@@ -1,25 +1,5 @@
 # Manticore Search Kibana Demo
 
-## Table of Contents
-
-- [Features](#features)
-- [Prerequisites](#prerequisites)
-- [Getting Started](#getting-started)
-  - [Clone the Repository](#clone-the-repository)
-  - [Configure the Environment](#configure-the-environment)
-    - [Pre-Built Indexes](#pre-built-indexes)
-    - [Generate a New Log File](#generate-a-new-log-file)
-    - [Custom Ports](#custom-ports)
-  - [Launch the Environment](#launch-the-environment)
-  - [Import Kibana Objects](#import-kibana-objects)
-    - [For the Elastic Kibana Instance](#for-the-elastic-kibana-instance)
-    - [For the Manticore Kibana Instance](#for-the-manticore-kibana-instance)
-  - [Explore the Dashboards](#explore-the-dashboards)
-  - [Stopping the Environment](#stopping-the-environment)
-- [Contributing](#contributing)
-- [License](#license)
-- [Support](#support)
-
 This repository provides a ready-to-use setup to demonstrate the integration of [Manticore Search](https://manticoresearch.com/) with [Kibana](https://www.elastic.co/kibana). It also enables a performance comparison between two Kibana instances connected to Elasticsearch and Manticore, respectively. 
 
 The demo utilizes a set of Kibana visualizations inspired by [this popular blog post](https://ruan.dev/blog/2019/04/02/setup-kibana-dashboards-for-nginx-log-data-to-understand-the-behavior), which is based on data from an Nginx access log file. The [kscarlett-generator](https://github.com/kscarlett/nginx-log-generator) tool is used to generate fake data for the log file.
