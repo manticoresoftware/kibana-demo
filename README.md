@@ -2,6 +2,10 @@
 
 This repository provides a ready-to-use setup to demonstrate the integration of [Manticore Search](https://manticoresearch.com/) with [Kibana](https://www.elastic.co/kibana). It also enables a performance comparison between two Kibana instances connected to Elasticsearch and Manticore, respectively. 
 
+Here are our test results with approximately 40 million documents, showing that the same dashboard renders in 7 seconds with Manticore Search, compared to 18 seconds with Elasticsearch.
+
+<img src="manticore1.png" alt="manticore" width="350" height="200" /> <img height="200" hspace="20"/> <img src="elastic1.png" alt="elastic" width="350" height="200" />
+
 The demo utilizes a set of Kibana visualizations inspired by [this popular blog post](https://ruan.dev/blog/2019/04/02/setup-kibana-dashboards-for-nginx-log-data-to-understand-the-behavior), which is based on data from an Nginx access log file. The [kscarlett-generator](https://github.com/kscarlett/nginx-log-generator) tool is used to generate fake data for the log file.
 
 ## Prerequisites
