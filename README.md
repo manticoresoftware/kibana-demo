@@ -9,7 +9,6 @@
   - [Configure the Environment](#configure-the-environment)
     - [Pre-Built Indexes](#pre-built-indexes)
     - [Generate a New Log File](#generate-a-new-log-file)
-    - [Update Log Data](#update-log-data)
     - [Custom Ports](#custom-ports)
   - [Launch the Environment](#launch-the-environment)
   - [Import Kibana Objects](#import-kibana-objects)
@@ -101,14 +100,14 @@ Choose `Explore on my own` on the Kibana start screen
 
 Import the pre-built visualizations into Kibana to use for the generated data.
 
-For the Elasticsearch Kibana instance:
+For the **Elasticsearch Kibana** instance:
 
 - Go to *Management > Saved objects* in the Kibana menu
 - Click *Import* and select the `.kibana_objects.ndjson` file from the project folder.
 - Refresh the Kibana window to apply the changes.
 
 
-For the Manticore Kibana instance:
+For the **Manticore Kibana** instance:
 
 - Go to *Discover* in the Kibana menu
 - Set `test` as the value for the `Index pattern` input field
