@@ -1,27 +1,10 @@
 # Manticore Search Kibana Demo
 
-## Table of Contents
-
-- [Features](#features)
-- [Prerequisites](#prerequisites)
-- [Getting Started](#getting-started)
-  - [Clone the Repository](#clone-the-repository)
-  - [Configure the Environment](#configure-the-environment)
-    - [Pre-Built Indexes](#pre-built-indexes)
-    - [Generate a New Log File](#generate-a-new-log-file)
-    - [Update Log Data](#update-log-data)
-    - [Custom Ports](#custom-ports)
-  - [Launch the Environment](#launch-the-environment)
-  - [Import Kibana Objects](#import-kibana-objects)
-    - [For the Elastic Kibana Instance](#for-the-elastic-kibana-instance)
-    - [For the Manticore Kibana Instance](#for-the-manticore-kibana-instance)
-  - [Explore the Dashboards](#explore-the-dashboards)
-  - [Stopping the Environment](#stopping-the-environment)
-- [Contributing](#contributing)
-- [License](#license)
-- [Support](#support)
-
 This repository provides a ready-to-use setup to demonstrate the integration of [Manticore Search](https://manticoresearch.com/) with [Kibana](https://www.elastic.co/kibana). It also enables a performance comparison between two Kibana instances connected to Elasticsearch and Manticore, respectively. 
+
+Here are our test results with approximately 40 million documents, showing that the same dashboard renders in 7 seconds with Manticore Search, compared to 18 seconds with Elasticsearch.
+
+<img src="manticore1.png" alt="manticore" width="350" height="200" /> <img height="200" hspace="20"/> <img src="elastic1.png" alt="elastic" width="350" height="200" />
 
 The demo utilizes a set of Kibana visualizations inspired by [this popular blog post](https://ruan.dev/blog/2019/04/02/setup-kibana-dashboards-for-nginx-log-data-to-understand-the-behavior), which is based on data from an Nginx access log file. The [kscarlett-generator](https://github.com/kscarlett/nginx-log-generator) tool is used to generate fake data for the log file.
 
@@ -32,6 +15,11 @@ Before getting started, ensure you have the following installed:
 - [Git](https://git-scm.com/)
 - [Docker Compose](https://docs.docker.com/compose/)
 - Zip and Unzip tools
+
+Command to install these packages in Ubuntu / Debian:
+```
+apt -y update && apt -y install git docker-compose zip unzip
+```
 
 ## Getting Started
 
@@ -61,9 +49,7 @@ Set the following in `.env`:
 LOG_ENTRY_COUNT=50000000
 ```
 
-#### Update Log Data
-
-Additionally, you can update the indexes with new log entries to simulate real-time log behavior. Use the UPDATE_RATE option to define how many log entries are added per second. To disable this feature, set `UPDATE_RATE` to 0:
+You can also make it add new log entries after the main volume is uploaded to mimic real-time logging. Use the `UPDATE_RATE` option to set how many log entries are added per second. To turn off this feature, set `UPDATE_RATE` to 0.  
 
 ```bash
 UPDATE_RATE=1
@@ -98,14 +84,13 @@ Choose `Explore on my own` on the Kibana start screen
 
 Import the pre-built visualizations into Kibana to use for the generated data.
 
-For the Elasticsearch Kibana instance:
+For the **Elasticsearch Kibana** instance:
 
 - Go to *Management > Saved objects* in the Kibana menu
-- Click *Import* and select the `.kibana_objects.ndjson` file from the project folder.
+- Click *Import* and select the [kibana_objects.ndjson](https://raw.githubusercontent.com/manticoresoftware/kibana-demo/refs/heads/main/kibana_objects.ndjson) file from the root of this repository.
 - Refresh the Kibana window to apply the changes.
 
-
-For the Manticore Kibana instance:
+For the **Manticore Kibana** instance:
 
 - Go to *Discover* in the Kibana menu
 - Set `test` as the value for the `Index pattern` input field
