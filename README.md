@@ -127,16 +127,16 @@ docker-compose down
   - [Relational data types](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html#object-types)
 - Metric aggregation functions are limited to [those supported by Manticore](../Searching/Grouping.md#Aggregation-functions).
 - The following Kibana tools are not supported:
-  - Canvas
-  - Maps
-  - Metrics
-  - Logs
+  - [Canvas](https://www.elastic.co/guide/en/kibana/7.6/canvas.html) – A visualization and presentation tool for combining data with colors and images.
+  - [Elastic Maps](https://www.elastic.co/guide/en/kibana/7.6/maps.html) – A tool for analyzing geographical data.
+  - [Metrics](https://www.elastic.co/guide/en/kibana/7.6/xpack-infra.html) – An app for monitoring infrastructure metrics.
+  - [Logs](https://www.elastic.co/guide/en/kibana/7.6/xpack-logs.html) – A console-like display for exploring logs from common services.
   - Monitoring:
-    - Uptime monitoring 
-    - APM(Application Performance Monitoring)
-    - SIEM(Security Information and Event Management)
-    - Stack monitoring
-  - ILM
+    - [Uptime](https://www.elastic.co/guide/en/kibana/7.6/xpack-uptime.html) – Monitors the status of network endpoints via HTTP/S, TCP, and ICMP.
+    - [APM (Application Performance Monitoring)](https://www.elastic.co/guide/en/kibana/7.6/xpack-apm.html) – Collects in-depth performance metrics from applications.
+    - [SIEM (Security Information and Event Management)](https://www.elastic.co/guide/en/kibana/7.6/xpack-siem.html) – An interactive workspace for security teams to triage events and conduct initial investigations.
+    - [Stack Monitoring](https://www.elastic.co/guide/en/kibana/7.6/xpack-monitoring.html) – Provides visualizations of monitoring data across the Elastic Stack.
+  - [Elasticsearch Management](https://www.elastic.co/guide/en/kibana/7.6/management.html) – A UI for managing Elastic Stack objects, including ILM (Index Lifecycle Management), etc.
 
 ## Contributing
 
