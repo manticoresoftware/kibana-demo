@@ -17,6 +17,7 @@ output.elasticsearch:
   hosts: ["http://manticore-for-kibana:9308"]
   index:  "test"
   allow_older_versions: true
+  bulk_max_size: 10000
 
 setup.ilm:
   enabled: false

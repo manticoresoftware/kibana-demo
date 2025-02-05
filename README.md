@@ -141,7 +141,17 @@ docker-compose down
   - [Text search types](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html#text-search-types) (except for plain 'text')
   - [Relational data types](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html#object-types)
 - Metric aggregation functions are limited to [those supported by Manticore](../Searching/Grouping.md#Aggregation-functions).
- 
+- The following Kibana tools are not supported:
+  - Canvas
+  - Maps
+  - Metrics
+  - Logs
+  - Monitoring:
+    - Uptime monitoring 
+    - APM(Application Performance Monitoring)
+    - SIEM(Security Information and Event Management)
+    - Stack monitoring
+  - ILM
 
 ## Contributing
 

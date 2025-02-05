@@ -18,6 +18,7 @@ output.elasticsearch:
   pipeline: preprocess
   index:  "test"
   allow_older_versions: true
+  bulk_max_size: 10000
 
 setup.ilm:
   enabled: false
